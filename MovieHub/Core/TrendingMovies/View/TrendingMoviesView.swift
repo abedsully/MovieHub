@@ -11,16 +11,28 @@ struct TrendingMoviesView: View {
     @StateObject var viewModel = TrendingMoviesViewModel()
     
     var body: some View {
-        VStack {
-            ForEach(viewModel.trendingMovies) { movie in
-                Text(movie.title)
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text("Trending Now")
+                        .foregroundStyle(.black)
+                    
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(viewModel.trendingMovies) { movie in
+                                NavigationLink(value: movie) {
+                                    MoviePoster(movie: movie, size: .poster)
+                                }
+                            }
+                        }
+                    }
+                    .scrollIndicators(.never)
+                }
+                .padding(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-        }
-        .task {
-            do {
-                try await viewModel.fetchTrendingMovies()
-            } catch {
-                print("Error loading trending movies: \(error.localizedDescription)")
+            .navigationDestination(for: Movie.self) { movie in
+                MovieDetailsView(movie: movie)
             }
         }
     }

@@ -16,4 +16,6 @@ struct URLConstant {
         return "https://api.themoviedb.org/3/movie/\(movieId)/credits?api_key=\(apiKey)"
     }
     
+    static let imageURL = "https://image.tmdb.org/t/p/w300"
+    
 }
