@@ -8,11 +8,36 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
-    let movie: Movie
+    @ObservedObject var viewModel: MovieDetailsViewModel
+    
+    var movie: Movie {
+        return viewModel.movie
+    }
+    
+    var detail: MovieDetail {
+        return viewModel.movieDetail ?? MovieDetail.MOCK_DETAIL[0]
+    }
+    
+    
+    init(movie: Movie) {
+        self.viewModel = MovieDetailsViewModel(movie: movie)
+    }
     
     var body: some View {
         VStack {
             MovieBackground(movie: movie, size: .background)
+            
+            Text(detail.title)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(viewModel.movieCast) { cast in
+                        VStack {
+                            MovieCastDetail(cast: cast)
+                        }    
+                    }
+                }
+            }
         }
     }
 }

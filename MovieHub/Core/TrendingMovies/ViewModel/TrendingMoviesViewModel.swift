@@ -18,7 +18,6 @@ class TrendingMoviesViewModel: ObservableObject {
         }
     }
     
-    
     func fetchTrendingMovies() async throws {
         do {
             let trendingResults = try await TrendingMovieService.shared.loadTrendingMovies()

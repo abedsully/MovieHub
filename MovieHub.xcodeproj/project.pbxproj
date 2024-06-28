@@ -24,6 +24,7 @@
 		A05BA9712C2A8637005672B5 /* MovieDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05BA9702C2A8637005672B5 /* MovieDetailService.swift */; };
 		A05BA9732C2A869F005672B5 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05BA9722C2A869F005672B5 /* MovieDetailsViewModel.swift */; };
 		A05BA9762C2A967A005672B5 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05BA9752C2A967A005672B5 /* MovieDetail.swift */; };
+		A0735AD02C2F1B1E00616649 /* MovieCastDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0735ACF2C2F1B1E00616649 /* MovieCastDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		A05BA9702C2A8637005672B5 /* MovieDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailService.swift; sourceTree = "<group>"; };
 		A05BA9722C2A869F005672B5 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		A05BA9752C2A967A005672B5 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		A0735ACF2C2F1B1E00616649 /* MovieCastDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCastDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			children = (
 				A05356692C2DCF2C0071FA81 /* MoviePoster.swift */,
 				A053566B2C2DCF340071FA81 /* MovieBackground.swift */,
+				A0735ACF2C2F1B1E00616649 /* MovieCastDetail.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				A05BA95F2C2A682A005672B5 /* Movie.swift in Sources */,
 				A053566A2C2DCF2C0071FA81 /* MoviePoster.swift in Sources */,
 				A05BA96A2C2A6CED005672B5 /* TrendingMoviesView.swift in Sources */,
+				A0735AD02C2F1B1E00616649 /* MovieCastDetail.swift in Sources */,
 				A05BA9762C2A967A005672B5 /* MovieDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

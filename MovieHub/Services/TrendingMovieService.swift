@@ -11,10 +11,8 @@ class TrendingMovieService {
     
     static let shared = TrendingMovieService()
     
-    
     // MARK: - Fetching Trending Movies By Day
     func loadTrendingMovies() async throws -> TrendingResult {
-        
         guard let url = URL(string: URLConstant.trendingMoviesURL) else {
             throw URLError(.badURL)
         }
@@ -25,8 +23,12 @@ class TrendingMovieService {
             throw URLError(.badServerResponse)
         }
         
-        let trendingResult = try JSONDecoder().decode(TrendingResult.self, from: data)
-        
-        return trendingResult
+        do {
+            let trendingResult = try JSONDecoder().decode(TrendingResult.self, from: data)
+            return trendingResult
+        } catch {
+            print("Failed to decode trending movies: \(error.localizedDescription)")
+            throw error
+        }
     }
 }

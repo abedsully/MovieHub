@@ -15,7 +15,8 @@ struct TrendingMoviesView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     Text("Trending Now")
-                        .foregroundStyle(.black)
+                        .font(.subheadline)
+                        .foregroundStyle(.white)
                     
                     ScrollView(.horizontal) {
                         HStack {
@@ -31,6 +32,7 @@ struct TrendingMoviesView: View {
                 .padding(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .background(Color(.black))
             .navigationDestination(for: Movie.self) { movie in
                 MovieDetailsView(movie: movie)
             }

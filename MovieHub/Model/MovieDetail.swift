@@ -7,8 +7,15 @@
 
 import Foundation
 
-struct MovieDetail: Decodable {
+struct MovieDetail: Decodable, Identifiable {
+    let id: Int
     let title: String
     let runtime: Int
     let overview: String
+}
+
+extension MovieDetail {
+    static var MOCK_DETAIL: [MovieDetail] = [
+        .init(id: 1, title: "Test", runtime: 120, overview: "test")
+    ]
 }
