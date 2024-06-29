@@ -37,6 +37,7 @@ struct CastDetail: View {
             Text(cast.character)
                 .font(.caption)
         }
+        .foregroundStyle(.white)
         .frame(width: 90)
         .lineLimit(1)
         .truncationMode(.tail)

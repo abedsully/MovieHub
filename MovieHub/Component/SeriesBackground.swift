@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct SeriesBackground: View {
+    let series: Series
+    let size: CardSize
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            AsyncImage(url: series.backdropURL) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: size.dimensionWidth, height: size.dimensionHeight)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            } placeholder: {
+                ProgressView()
+            }
+        }
     }
 }
 
 #Preview {
-    SeriesBackground()
+    SeriesBackground(series: Series.MOCK_SERIES[0], size: .background)
 }

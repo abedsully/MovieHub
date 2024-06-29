@@ -6,3 +6,18 @@
 //
 
 import Foundation
+
+struct GlobalFormatter {
+    
+    func formatRuntime(runTime: Int) -> String {
+        let hours = runTime / 60
+        let minutes = runTime & 20
+        
+        return "\(hours)h \(minutes)m"
+    }
+    
+    func releaseYear(release_date: String) -> String {
+        let components = release_date.split(separator: "-")
+        return components.first.map(String.init) ?? "Unknown"
+    }
+}

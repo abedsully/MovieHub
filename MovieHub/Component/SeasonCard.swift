@@ -8,11 +8,40 @@
 import SwiftUI
 
 struct SeasonCard: View {
+    let series: Series?
+    let season: SeriesSeasons
+    let size: CardSize
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if let posterPath = season.poster_path, !posterPath.isEmpty {
+                AsyncImage(url: season.posterURL) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: size.dimensionWidth, height: size.dimensionHeight)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                } placeholder: {
+                    ProgressView()
+                }
+            } else {
+                AsyncImage(url: series?.posterURL) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: size.dimensionWidth, height: size.dimensionHeight)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                } placeholder: {
+                    ProgressView()
+                }
+            }
+            
+            Text(season.name)
+            
+        }
     }
 }
 
 #Preview {
-    SeasonCard()
+    SeasonCard(series: Series.MOCK_SERIES[0], season: SeriesDetail.MOCK_SEASON[0], size: .poster)
 }

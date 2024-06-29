@@ -8,11 +8,36 @@
 import SwiftUI
 
 struct SeriesDetailsView: View {
+    @ObservedObject var viewModel: SeriesDetailsViewModel
+    
+    var series: Series {
+        return viewModel.series
+    }
+    
+    var detail: SeriesDetail {
+        return viewModel.seriesDetail ?? SeriesDetail.MOCK_SERIES[0]
+    }
+    
+    init(series: Series) {
+        self.viewModel = SeriesDetailsViewModel(series: series)
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(detail.name)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(detail.seasons) {season in
+                        SeasonCard(series: series, season: season, size: .poster)
+                    }
+                }
+            }
+
+        }
     }
 }
 
 #Preview {
-    SeriesDetailsView()
+    SeriesDetailsView(series: Series.MOCK_SERIES[0])
 }

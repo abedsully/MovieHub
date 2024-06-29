@@ -9,14 +9,14 @@ import SwiftUI
 
 struct MovieBackground: View {
     let movie: Movie
-    let size: MovieCardSize
+    let size: CardSize
     
     var body: some View {
         VStack {
-            AsyncImage(url: movie.backdropURL) { image in
+            AsyncImage(url: movie.posterURL) { image in
                 image
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
                     .frame(width: size.dimensionWidth, height: size.dimensionHeight)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             } placeholder: {

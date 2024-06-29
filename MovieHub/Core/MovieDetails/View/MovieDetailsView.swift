@@ -9,6 +9,9 @@ import SwiftUI
 
 struct MovieDetailsView: View {
     @ObservedObject var viewModel: MovieDetailsViewModel
+    @Environment(\.dismiss) var dismiss
+    
+    let formatter = GlobalFormatter()
     
     var movie: Movie {
         return viewModel.movie
@@ -18,27 +21,100 @@ struct MovieDetailsView: View {
         return viewModel.movieDetail ?? MovieDetail.MOCK_DETAIL[0]
     }
     
-    
     init(movie: Movie) {
         self.viewModel = MovieDetailsViewModel(movie: movie)
     }
     
     var body: some View {
-        VStack {
-            MovieBackground(movie: movie, size: .background)
-            
-            Text(detail.title)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(viewModel.movieCast) { cast in
-                        VStack {
-                            MovieCastDetail(cast: cast)
-                        }    
+        ScrollView {
+            ZStack(alignment: .top) {
+                MovieBackground(movie: movie, size: .background)
+                    .background(Color(.blue))
+                    .ignoresSafeArea()
+                
+                VStack (alignment: .leading) {
+                    HStack (alignment: .top) {
+                        Button(action: {
+                            dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.black.opacity(0.5))
+                                .clipShape(Circle())
+                        }
+                        
+                        Spacer()
                     }
+                    .frame(height: 300, alignment: .top)
+                    .padding(.top, 36)
+                    
+                    HStack (alignment: .center, spacing: 10) {
+                        Text(detail.title)
+                            .font(.title3)
+                            .fontWeight(.medium)
+                        
+                        Spacer()
+                        
+                        HStack (alignment: .center) {
+                            Image(systemName: "hand.thumbsup.fill")
+                                .imageScale(.medium)
+                            
+                            Text(String(format: "%.1f", detail.vote_average))
+                                .font(.subheadline)
+                        }
+                        
+                    }
+                    .padding(.vertical, 8)
+                    
+                    HStack (alignment: .center, spacing: 10) {
+                        Text(formatter.releaseYear(release_date: detail.release_date))
+                        Text("•")
+                            .font(.headline)
+                        Text(formatter.formatRuntime(runTime: detail.runtime))
+                    }
+                    .font(.subheadline)
+                    
+                    Text("Directed by: \(viewModel.movieDirector)")
+                        .font(.subheadline)
+                        .padding(.vertical, 8)
+                    
+                    
+                    Text(detail.overview)
+                        .font(.caption)
+                        .foregroundStyle(Color(.systemGray2))
+                        .frame(maxHeight: .infinity)
+
+                    Text("Top Casts")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                        .padding(.top, 16)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(viewModel.movieCast) { cast in
+                                VStack {
+                                    CastDetail(cast: cast)
+                                }
+                                .padding()
+                            }
+                        }
+                    }
+                    .padding(.bottom, 16)
+                    
+                    Spacer()
+                    
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 24)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundStyle(.white)
             }
         }
+        .scrollIndicators(.never)
+        .ignoresSafeArea(edges: .top)
+        .background(Color(.black))
+        .navigationBarBackButtonHidden(true)
     }
 }
 

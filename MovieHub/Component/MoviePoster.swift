@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoviePoster: View {
     let movie: Movie
-    let size: MovieCardSize
+    let size: CardSize
     
     var body: some View {
         VStack {

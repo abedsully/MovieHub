@@ -9,7 +9,8 @@ import Foundation
 
 class MovieDetailsViewModel: ObservableObject {
     @Published var movieDetail: MovieDetail?
-    @Published var movieCast = [MovieCast]()
+    @Published var movieCast = [Cast]()
+    @Published var movieDirector = String()
     
     @Published var movie: Movie
     
@@ -22,6 +23,10 @@ class MovieDetailsViewModel: ObservableObject {
         
         Task {
             try await loadMovieCast()
+        }
+        
+        Task {
+            try await loadDirector()
         }
     }
     
@@ -40,6 +45,18 @@ class MovieDetailsViewModel: ObservableObject {
             let movieCredit = try await MovieDetailService.shared.loadMovieCredits(movieId: movie.id)
             let filteredCast = movieCredit.cast.filter{ $0.order <= 10}
             self.movieCast = filteredCast
+        } catch {
+            print("Failed to load movie casts: \(error.localizedDescription)")
+        }
+    }
+    
+    @MainActor
+    func loadDirector() async throws {
+        do {
+            let movieCredit = try await MovieDetailService.shared.loadMovieCredits(movieId: movie.id)
+            let filteredCrew = movieCredit.crew.filter{$0.job == "Director"}
+            let director = filteredCrew.first
+            self.movieDirector = director?.name ?? ""
         } catch {
             print("Failed to load movie casts: \(error.localizedDescription)")
         }

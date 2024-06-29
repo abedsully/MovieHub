@@ -9,7 +9,22 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ScrollView {
+                VStack {
+                    TrendingMoviesView()
+                    OnAirSeriesView()
+                }
+                .background(Color.black)
+            }
+            .background(Color.black)
+            .navigationDestination(for: Movie.self) { movie in
+                MovieDetailsView(movie: movie)
+            }
+            .navigationDestination(for: Series.self) { series in
+                SeriesDetailsView(series: series)
+            }
+        }
     }
 }
 

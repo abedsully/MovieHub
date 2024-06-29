@@ -25,7 +25,7 @@ enum CardSize {
         case .poster:
             return 200
         case .background:
-            return 300
+            return 350
         }
     }
 }

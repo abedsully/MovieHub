@@ -9,10 +9,11 @@ import Foundation
 
 struct Credit: Identifiable, Decodable {
     let id: Int
-    let cast: [MovieCast]
+    let cast: [Cast]
+    let crew: [Crew]
 }
 
-struct MovieCast: Identifiable, Decodable {
+struct Cast: Identifiable, Decodable {
     let id: Int
     let name: String
     let character: String
@@ -28,8 +29,14 @@ struct MovieCast: Identifiable, Decodable {
     }
 }
 
-extension MovieCast {
-    static var MOCK_CAST: [MovieCast] = [
+struct Crew: Identifiable, Decodable {
+    let id: Int
+    let name: String
+    let job: String
+}
+
+extension Cast {
+    static var MOCK_CAST: [Cast] = [
         .init(id: 1, name: "Robert Downey Jr", character: "Iron Man", profile_path: "test", order: 1)
     ]
 }

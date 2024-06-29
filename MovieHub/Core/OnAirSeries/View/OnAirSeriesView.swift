@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct OnAirSeriesView: View {
+    @StateObject var viewModel = OnAirSeriesViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text("On Air Series")
+                    .font(.subheadline)
+                    .foregroundStyle(.white)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(viewModel.onAirSeries) { series in
+                            NavigationLink(value: series) {
+                                SeriesPoster(series: series, size: .poster)
+                            }
+                        }
+                    }
+                }
+            }
+            .padding(.leading)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .background(Color.black)
     }
 }
 
 #Preview {
     OnAirSeriesView()
 }
+ 

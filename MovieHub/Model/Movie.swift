@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TrendingResult: Decodable {
+struct TrendingMovies: Decodable {
     let page: Int
     let results: [Movie]
     let total_pages: Int
@@ -39,6 +39,7 @@ struct Movie: Identifiable, Decodable, Hashable {
         }
     }
 }
+
 
 extension Movie {
     static var MOCK_MOVIE: [Movie] = [
