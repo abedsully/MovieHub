@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MovieCardSize {
+enum CardSize {
     case poster
     case background
     

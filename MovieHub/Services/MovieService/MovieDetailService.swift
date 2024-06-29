@@ -32,7 +32,7 @@ class MovieDetailService {
     }
     
     // MARK: - Fetching Movie Credits (Actors, Actress)
-    func loadMovieCredits(movieId: Int) async throws -> MovieCredit {
+    func loadMovieCredits(movieId: Int) async throws -> Credit {
         guard let url = URL(string: URLConstant.movieCreditURL(for: movieId)) else {
             throw URLError(.badURL)
         }
@@ -44,7 +44,7 @@ class MovieDetailService {
         }
         
         do {
-            let movieCredits = try JSONDecoder().decode(MovieCredit.self, from: data)
+            let movieCredits = try JSONDecoder().decode(Credit.self, from: data)
             return movieCredits
         } catch {
             print("Failed to decode movie credits: \(error.localizedDescription)")

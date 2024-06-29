@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct MovieCastDetail: View {
-    let cast: MovieCast
+struct CastDetail: View {
+    let cast: Cast
     
     var body: some View {
         VStack {
@@ -45,7 +45,7 @@ struct MovieCastDetail: View {
 
 struct MovieCastDetail_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCastDetail(cast: MovieCast.MOCK_CAST[0])
+        CastDetail(cast: Cast.MOCK_CAST[0])
     }
 }
 
