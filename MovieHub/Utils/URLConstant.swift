@@ -34,4 +34,19 @@ struct URLConstant {
     // MARK: - Load Movie or Series Image API
     static let imageURL = "https://image.tmdb.org/t/p/w500"
     
+    // MARK: - Load Movie or Series Recommendations
+    static func movieRecommendationURL(for movieId: Int) -> String {
+        return "https://api.themoviedb.org/3/movie/\(movieId)/recommendations?api_key=\(apiKey)"
+    }
+    
+    // MARK: - Load Actor/Actress Details
+    static func loadCastDetail(for id: Int) -> String {
+        return "https://api.themoviedb.org/3/person/\(id)?api_key=\(apiKey)"
+    }
+    
+    // MARK: - Load Actor/Actress Movie or Series Credits
+    static func loadCastCredit(for id: Int) -> String {
+        return "https://api.themoviedb.org/3/person/\(id)/movie_credits?api_key=\(apiKey)"
+    }
+    
 }

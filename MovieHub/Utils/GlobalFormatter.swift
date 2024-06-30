@@ -11,7 +11,7 @@ struct GlobalFormatter {
     
     func formatRuntime(runTime: Int) -> String {
         let hours = runTime / 60
-        let minutes = runTime & 20
+        let minutes = runTime % 60
         
         return "\(hours)h \(minutes)m"
     }

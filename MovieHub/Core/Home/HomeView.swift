@@ -24,6 +24,9 @@ struct HomeView: View {
             .navigationDestination(for: Series.self) { series in
                 SeriesDetailsView(series: series)
             }
+            .navigationDestination(for: Cast.self) { cast in
+                CastDetailView(cast: cast)
+            }
         }
     }
 }

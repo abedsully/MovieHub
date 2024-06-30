@@ -84,23 +84,35 @@ struct MovieDetailsView: View {
                         .font(.caption)
                         .foregroundStyle(Color(.systemGray2))
                         .frame(maxHeight: .infinity)
-
+                    
                     Text("Top Casts")
                         .font(.title3)
                         .fontWeight(.medium)
                         .padding(.top, 16)
                     
+                    CastView(movie: movie)
+                    
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(viewModel.movieCast) { cast in
-                                VStack {
-                                    CastDetail(cast: cast)
+                                NavigationLink(value: cast) {
+                                    VStack {
+                                        CastCard(cast: cast)
+                                    }
+                                    .padding()
                                 }
-                                .padding()
                             }
                         }
                     }
                     .padding(.bottom, 16)
+                    
+                    Text("Recommended Movies")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                        .padding(.top, 16)
+                    
+                    MovieRecommendationView(movie: movie)
+                    
                     
                     Spacer()
                     

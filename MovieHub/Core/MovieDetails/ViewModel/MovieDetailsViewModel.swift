@@ -22,10 +22,6 @@ class MovieDetailsViewModel: ObservableObject {
         }
         
         Task {
-            try await loadMovieCast()
-        }
-        
-        Task {
             try await loadDirector()
         }
     }
@@ -36,17 +32,6 @@ class MovieDetailsViewModel: ObservableObject {
             self.movieDetail = try await MovieDetailService.shared.loadMovieDetails(movieId: movie.id)
         } catch {
             print("Failed to load movie details: \(error.localizedDescription)")
-        }
-    }
-    
-    @MainActor
-    func loadMovieCast() async throws {
-        do {
-            let movieCredit = try await MovieDetailService.shared.loadMovieCredits(movieId: movie.id)
-            let filteredCast = movieCredit.cast.filter{ $0.order <= 10}
-            self.movieCast = filteredCast
-        } catch {
-            print("Failed to load movie casts: \(error.localizedDescription)")
         }
     }
     

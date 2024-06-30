@@ -13,7 +13,7 @@ struct Credit: Identifiable, Decodable {
     let crew: [Crew]
 }
 
-struct Cast: Identifiable, Decodable {
+struct Cast: Identifiable, Decodable, Hashable {
     let id: Int
     let name: String
     let character: String

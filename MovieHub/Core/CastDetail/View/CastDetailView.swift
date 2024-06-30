@@ -8,11 +8,28 @@
 import SwiftUI
 
 struct CastDetailView: View {
+    @ObservedObject var viewModel: CastDetailViewModel
+    
+    var cast: Cast {
+        return viewModel.cast
+    }
+    
+    var detail: CastDetail {
+        return viewModel.castDetail ?? CastDetail.MOCK_CASTDETAIL[0]
+    }
+    
+    init(cast: Cast){
+        self.viewModel = CastDetailViewModel(cast: cast)
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(detail.name)
+            Text(detail.biography)
+        }
     }
 }
 
 #Preview {
-    CastDetailView()
+    CastDetailView(cast: Cast.MOCK_CAST[0])
 }
